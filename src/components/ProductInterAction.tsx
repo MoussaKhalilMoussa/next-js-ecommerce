@@ -2,6 +2,7 @@
 
 import useCartStore from "@/store/cartStore";
 import { ProductType } from "@/types";
+import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -27,7 +28,7 @@ const ProductInterAction = ({
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const changeQuantity = (type: "increment" | "decrement") => {
+  const handleQuantityChange = (type: "increment" | "decrement") => {
     if (type === "increment") {
       setQuantity((prev) => prev + 1);
     } else {
@@ -92,6 +93,38 @@ const ProductInterAction = ({
           ))}
         </div>
       </div>
+      {/* QUANTITY */}
+      <div className="flex flex-col gap-2 text-sm ">
+        <span className="text-gray-500"> Qauntity</span>
+        <div className=" flex items-center gap-2 ">
+          <button
+            className="cursor-pointer border-1 border-gray-300 p-1"
+            onClick={() => handleQuantityChange("decrement")}
+          >
+            <Minus className="w-4 h-4" />
+          </button>
+          <span> {quantity} </span>
+          <button
+            className="cursor-pointer border-1 border-gray-300 p-1"
+            onClick={() => handleQuantityChange("increment")}
+          >
+            <Plus className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+      {/* BUTTON */}
+      <button
+        className="bg-gray-800 text-white py-2 px-4 rounded-lg shadow-lg flex items-center justify-center gap-2 cursor-pointer text-sm font-medium "
+        onClick={handleAddToCart}
+      >
+        <Plus className="w-4 h-4" />
+        Add to Cart
+      </button>
+
+      <button className="ring-1 ring-gray-400 shadow-lg text-gray-800 px-4 py-2 rounded-md flex items-center justify-center cursor-pointer gap-2 text-sm font-medium ">
+        <ShoppingCart className="w-4 h-4" />
+        Buy this Item
+      </button>
     </div>
   );
 };
