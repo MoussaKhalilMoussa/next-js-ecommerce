@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <nav
       className=" 
-        w-full left-0 sticky top-0 z-50 bg-white flex items-center justify-between border-b border-gray-200 py-4"
+        w-full left-0 sticky top-0 z-50 bg-gray-100 flex items-center justify-between border-b border-gray-200 py-4"
       /* LEFT */
     >
       <Link href="/" className="flex items-center ">
